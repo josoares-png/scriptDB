@@ -1,5 +1,4 @@
 <?php 
-
      $host = "localhost";
      $user = "user_dbLoja";
      $pwd = "0712@";
@@ -9,28 +8,18 @@
 
      $con = mysqli_connect($host,$user,$pwd,$db);
 
-     //checar a conexão
-
-     if (mysqli_connect_errno()) {
+      if (mysqli_connect_errno()) {
 
           echo "Erro ao acessar a base de dados" . mysqli_connect_error();
      }else{
+     	$sql = "insert into tbPessoa(nome,email)values('$_POST[nome]','$_POST[email]')";
 
-          //echo "Banco de dados conectado com sucesso!!!";
+     	mysqli_query($con,$sql);
 
-          $sql = "insert into tbPessoa(nome,email)values('Etecia','sac@etecia.com')";
+     	echo "Cadastrado com sucesso!!!";
 
-          mysqli_query($con,$sql);
-
-          mysqli_close($con);
+     	mysqli_close($con);
      }
 
-
-
-
-
-
-
-
-
+ 
  ?>

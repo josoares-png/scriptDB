@@ -12,14 +12,18 @@
 
           echo "Erro ao acessar a base de dados" . mysqli_connect_error();
      }else{
+
      	$sql = "insert into tbPessoa(nome,email)values('$_POST[nome]','$_POST[email]')";
 
-     	mysqli_query($con,$sql);
-
+     	if (mysqli_query($con,$sql)){
+    
      	echo "Cadastrado com sucesso!!!";
 
-     	mysqli_close($con);
+     }else{
+     	echo "Erro ao cadastrar!!!" . mysqli_error();
      }
+     mysqli_close($con);
+ }
 
  
  ?>

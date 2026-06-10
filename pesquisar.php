@@ -13,16 +13,17 @@
           echo "Erro ao acessar a base de dados" . mysqli_connect_error();
      }else{
 
-     	$sql = "insert into tbPessoa(nome,email)values('$_POST[nome]','$_POST[email]')";
+     	$sql = "select nome,email from tbPessoa";
 
-     	if (mysqli_query($con,$sql)){
-    
-     	echo "Cadastrado com sucesso!!!";
+      $resultado = mysqli_query($con,$sql);
 
-     }else{
-     	
-     	echo "Erro ao cadastrar!!!" . mysqli_error();
-     }
+      echo "<h2>Lista de pessoas<h2>";
+
+      while ($pessoa = mysqli_fetch_array($resultado)) {
+        echo $pessoa['nome'] . " - " . $pessoa['email'] ."<br><br>";
+      }
+ 
+
      mysqli_close($con);
  }
 
